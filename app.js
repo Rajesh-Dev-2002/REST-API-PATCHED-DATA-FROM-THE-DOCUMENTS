@@ -67,13 +67,30 @@ app.get("/students/:id",async(req,res)=>{
         else{
           res.send(findOneData)
         }
-        
+         
        } catch (e) {
         res.send(e)
        }
 })
 
+//delete the data from existing documents by find id and delete that documents.
 
+app.delete("/students/:id",async(req,res)=>{
+  try {
+    const Delete = req.params.id;
+    const findAndDelete = await Student.findByIdAndDelete(Delete)
+    if(!findAndDelete){
+      res.status(404).send();
+    }
+    else{
+      res.status(201).send(findAndDelete)
+    }
+    
+  } catch (e) {
+    res.status(404).send(e);
+    
+  }
+})
 
 
 
