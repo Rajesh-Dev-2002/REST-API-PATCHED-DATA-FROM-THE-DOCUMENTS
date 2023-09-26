@@ -55,7 +55,23 @@ app.get("/students",  async(req,res)=>{
 })
 
 
+//to get the indivisual data from the students using ID
 
+app.get("/students/:id",async(req,res)=>{
+       try {
+        const _id = req.params.id;
+        const findOneData= await Student.findById(_id);
+        if(!findOneData){
+          res.status(404).send();
+        }
+        else{
+          res.send(findOneData)
+        }
+        
+       } catch (e) {
+        res.send(e)
+       }
+})
 
 
 
