@@ -44,7 +44,15 @@ app.post("/students",async(req,res)=>{
 
 })
 
-
+// to get the data from the database , thats why we use get method thats acts as like read the data, from db;
+app.get("/students",  async(req,res)=>{
+  try {
+   const findData= await Student.find();
+    res.status(201).send(findData);
+  } catch (e) {
+    res.status(401).send(e)
+  }
+})
 
 
 
